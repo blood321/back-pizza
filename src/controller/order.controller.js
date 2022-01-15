@@ -84,28 +84,6 @@ const getOrderId = async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
 const putOrder = async (req, res) => {
 
 
@@ -152,12 +130,6 @@ const putOrder = async (req, res) => {
 
 }
 
-
-
-
-
-
-
 const deleteOrder = async (req, res) => {
 
 
@@ -201,22 +173,4 @@ postOrder,
 getOrderId,
 putOrder,
 deleteOrder
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
