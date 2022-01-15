@@ -3,15 +3,10 @@ const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema(
   {
-    customer: {
-      type: String,
+    client: {
+      type: Schema.ObjectId, 
+    	ref: 'Client',
       required: true,
-      maxlength: 60,
-    },
-    address: {
-      type: String,
-      required: true,
-      maxlength: 200,
     },
     total: {
       type: Number,
@@ -21,12 +16,13 @@ const OrderSchema = new Schema(
       type: Number,
       default: 0,
     },
-    method: {
-      type: Number,
+    desc: {
+      type: String,
+      maxLenght: 255,
       required: true
     },
 },
   { timestamps: true }
 );
 
-module.export = mongoose.models.Order || mongoose.model("Order", OrderSchema);
+module.exports = mongoose.models.Order || mongoose.model("Order", OrderSchema);

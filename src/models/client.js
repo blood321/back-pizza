@@ -1,29 +1,26 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ProductSchema = new Schema(
+const ClientSchema = new Schema(
   {
-    title: {
+    name: {
       type: String,
       required: true,
       maxlength: 60,
     },
-    desc: {
+    phone: {
+      type: Number,
+      required: true,
+      maxlength: 20,      
+    },
+    address: {
       type: String,
       required: true,
-      maxlength: 200,
-    },
-    img: {
-      type: String,
-      required: true,
-    },
-    prices: {
-      type: [Number],
-      required: true,
-    },
+      maxlength: 60,      
+    }
   },
   { timestamps: true }
 );
 
 module.exports =
-  mongoose.models.Product || mongoose.model("Product", ProductSchema);
+  mongoose.models.Client || mongoose.model("client", ClientSchema);
