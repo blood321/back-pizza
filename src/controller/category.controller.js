@@ -22,18 +22,6 @@ const getCategoryId = async (req, res) => {
     }
 }
 
-const getCategoryName = async (req, res) => {
-    let { name } = req.query
-    try {
-        const list = await Category.find({ name: name })
-            .sort({ createAt: 1 })
-        res.send(list)
-    }
-    catch (err) {
-        res.status(500).send(err)
-    }
-}
-
 const putCategory = async (req, res) => {
     let id = req.query._id
     const { title } = req.body
@@ -61,7 +49,6 @@ const deleteCategory = async (req, res) => {
 module.exports={
   postCategory,
   getCategoryId,
-  getCategoryName,
   putCategory,
   deleteCategory
 }
