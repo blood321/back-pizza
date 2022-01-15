@@ -7,5 +7,3 @@ router.get('/product', getProductId)
 router.post('/product', postProduct)
 router.put('/product', putProduct)
 router.delete('/product', deleteProduct)
-
-
