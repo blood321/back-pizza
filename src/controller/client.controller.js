@@ -15,7 +15,11 @@ const postClient = async (req, res) => {
 const getClientId = async (req, res) => {
     let id = req.query._id
     try {
-        const client = await Client.findOne({ _id: id })
+        if(!id){
+            let client = await Client.find();
+            res.send(client)
+        }
+        let client = await Client.findOne({ _id: id })
         client ? res.send(client) : res.send('This client not exist')
     }
     catch (err) {

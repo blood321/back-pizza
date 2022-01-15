@@ -8,6 +8,19 @@ const OrderSchema = new Schema(
     	ref: 'client',
       required: true,
     },
+    products: [
+      {
+        product: {
+          type: Schema.ObjectId,
+          ref: 'product',
+          required: true,
+        },
+        quantity: {
+          type: Number,
+          required: true,
+        },
+      },
+    ],
     total: {
       type: Number,
       required: true,

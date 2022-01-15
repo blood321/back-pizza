@@ -13,15 +13,13 @@ const postCategory = async (req, res) => {
 
 const getCategoryId = async (req, res) => {
     let id = req.query._id
-    let { title } = req.query
     try {
-        if (title) {
-            let category = await Category.find({ title }, { createAt: 0 })
-                .sort({ createAt: -1 });
+        if (id) {
+            let category = await Category.findOne({ _id: id })
             res.send(category)
         }
-        else {
-            const category = await Category.findOne({ _id: id })
+        else {            
+            let category = await Category.find();
             res.send(category)
         }
     }

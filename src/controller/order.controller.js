@@ -2,8 +2,9 @@ const Order = require('../models/order.js');
 
 const postOrder = async (req, res) => {
     try {
-        const { total, desc, client } = req.body
-        const order = await Order.create({ total, desc, client })
+        const { total, desc, client, products } = req.body
+        if (((!total || !desc) || !client) || products.lenght < 1) { res.send('Faltan datos')}
+        const order = await Order.create({ total, desc, client, products })
         res.send(order)
     }
     catch (err) {
@@ -23,7 +24,7 @@ const getOrderId = async (req, res) => {
         }
         else {
             let order = await Order.findOne({ _id: id })
-            client ? res.send(order) : res.send('This order not exist')
+            order ? res.send(order) : res.send('This order not exist')
         }
     }
     catch (err) {
@@ -33,11 +34,11 @@ const getOrderId = async (req, res) => {
 
 const putOrder = async (req, res) => {
     let id = req.query._id
-    const { total, desc, client, status } = req.body
+    const { total, desc, client, status, products } = req.body
     try {
-        const order = await Order.findByIdAndUpdate({ _id: id }, { total, desc, client, status })
+        const order = await Order.findByIdAndUpdate({ _id: id }, { total, desc, client, status, products })
         res.send(order)
-        if ((!total || !desc) || !client) { res.send('Faltan datos'); }
+        if (((!total || !desc) || !client) || !products) { res.send('Faltan datos'); }
     }
     catch (err) {
         res.status(500).send(err)
