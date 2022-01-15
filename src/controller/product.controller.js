@@ -2,8 +2,8 @@ const Product = require('../models/product.js');
 
 const postProduct = async (req, res) => {
     try {
-        const { title, desc, prices, img } = req.body
-        const product = await Product.create({ title, desc, prices, img })
+        const { title, desc, prices, img, category } = req.body
+        const product = await Product.create({ title, desc, prices, img, category })
         res.send(product)
     }
     catch (err) {
@@ -11,31 +11,39 @@ const postProduct = async (req, res) => {
     }
 }
 
- const getProductId = async (req, res) => {
+const getProductId = async (req, res) => {
     let id = req.query._id
+    let { category } = req.query
     try {
-        const product = await Product.findOne({ _id: id })
-        product ? res.send(product) : res.send('This Product not exist')
+        if (category) {
+            let product = await Product.find({ category }, { createAt: 0 })
+                .sort({ createAt: -1 });
+            res.send(product)
+        }
+        else {
+            let product = await Product.findOne({ _id: id })
+            product ? res.send(product) : res.send('This Product not exist')
+        }
     }
     catch (err) {
         res.status(500).send(err)
     }
 }
 
- const putProduct = async (req, res) => {
+const putProduct = async (req, res) => {
     let id = req.query._id
-    const { title, desc, img, prices } = req.body
+    const { title, desc, img, prices, category } = req.body
     try {
-        const product = await Product.findByIdAndUpdate({ _id: id }, { title, desc, img, prices })
+        const product = await Product.findByIdAndUpdate({ _id: id }, { title, desc, img, prices, category })
         res.send(product)
-        if (((!title || !desc) || !img) || !prices) { res.send('Faltan datos'); }
+        if ((((!title || !desc) || !img) || !prices) || !category) { res.send('Faltan datos'); }
     }
     catch (err) {
         res.status(500).send(err)
     }
 }
 
- const deleteProduct = async (req, res) => {
+const deleteProduct = async (req, res) => {
     let id = req.query._id
     try {
         const product = await Product.findByIdAndDelete({ _id: id })
@@ -47,8 +55,8 @@ const postProduct = async (req, res) => {
 }
 
 module.exports = {
-postProduct,
-getProductId,
-putProduct,
-deleteProduct
+    postProduct,
+    getProductId,
+    putProduct,
+    deleteProduct
 }

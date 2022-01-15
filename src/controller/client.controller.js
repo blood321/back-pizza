@@ -29,7 +29,7 @@ const putClient = async (req, res) => {
     try {
         const client = await Client.findByIdAndUpdate({ _id: id }, { name, address, phone })
         res.send(client)
-        if (!name || !address || !phone) { res.send('Faltan datos'); }
+        if ((!name || !address) || !phone) { res.send('Faltan datos'); }
     }
     catch (err) {
         res.status(500).send(err)

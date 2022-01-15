@@ -21,6 +21,11 @@ const ProductSchema = new Schema(
       type: [Number],
       required: true,
     },
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: "category",
+      required: true,
+    },
   },
   { timestamps: true }
 );

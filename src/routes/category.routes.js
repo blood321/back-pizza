@@ -3,7 +3,9 @@ const {postCategory, getCategoryId, putCategory, deleteCategory} = require('../c
 
 const router = express.Router();
 
-router.get('/category', getCategoryId);
-router.post('/category', postCategory);
-router.put('/category', putCategory);
-router.delete('/category', deleteCategory);
+router.get('/', getCategoryId);
+router.post('/', postCategory);
+router.put('/', putCategory);
+router.delete('/', deleteCategory);
+
+module.exports = router;
