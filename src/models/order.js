@@ -5,7 +5,7 @@ const OrderSchema = new Schema(
   {
     client: {
       type: Schema.ObjectId, 
-    	ref: 'Client',
+    	ref: 'client',
       required: true,
     },
     total: {
@@ -25,4 +25,4 @@ const OrderSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.models.Order || mongoose.model("Order", OrderSchema);
+module.exports = mongoose.models.Order || mongoose.model("order", OrderSchema);
