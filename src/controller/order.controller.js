@@ -26,7 +26,7 @@ const putOrder = async (req, res) => {
     let id = req.query._id
     const { ntotal, desc, client, status} = req.body
     try {
-        const order = await Order.findOneAndUpdate({ _id: id }, { total, desc, client, status})
+        const order = await Order.findByIdAndUpdate({ _id: id }, { total, desc, client, status})
         res.send(order)
         if (!total || !desc || !client) { res.send('Faltan datos'); }
     }

@@ -26,7 +26,7 @@ const postProduct = async (req, res) => {
     let id = req.query._id
     const { title, desc, img, prices } = req.body
     try {
-        const product = await Product.findOneAndUpdate({ _id: id }, { title, desc, img, prices })
+        const product = await Product.findByIdAndUpdate({ _id: id }, { title, desc, img, prices })
         res.send(product)
         if (((!title || !desc) || !img) || !prices) { res.send('Faltan datos'); }
     }

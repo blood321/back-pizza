@@ -26,7 +26,7 @@ const putCategory = async (req, res) => {
     let id = req.query._id
     const { title } = req.body
     try {
-        const category = await Category.findOneAndUpdate({ _id: id }, { title})
+        const category = await Category.findByIdAndUpdate({ _id: id }, { title})
         res.send(category)
         if (!title) { res.send('Faltan datos'); }
     }

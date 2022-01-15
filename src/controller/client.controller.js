@@ -27,7 +27,7 @@ const putClient = async (req, res) => {
     let id = req.query._id
     const { name, address, phone} = req.body
     try {
-        const client = await Client.findOneAndUpdate({ _id: id }, { name, address, phone })
+        const client = await Client.findByIdAndUpdate({ _id: id }, { name, address, phone })
         res.send(client)
         if (!name || !address || !phone) { res.send('Faltan datos'); }
     }
