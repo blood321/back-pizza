@@ -47,11 +47,6 @@ const getClientId = async (req, res) => {
 
         
 
-    
-
-
-
-
 
 
 
