@@ -1,11 +1,5 @@
 const express = require('express');
-const {postCategory,
-
-getCategoryId,
-
-putCategory,
-
-deleteCategory} = require('../controller/category.controller');
+const {postCategory, getCategoryId, putCategory, deleteCategory} = require('../controller/category.controller');
 
 const router = express.Router();
 
