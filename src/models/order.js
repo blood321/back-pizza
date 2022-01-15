@@ -18,6 +18,7 @@ const OrderSchema = new Schema(
     },
     desc: {
       type: String,
+      maxLenght: 255,
       required: true
     },
 },
