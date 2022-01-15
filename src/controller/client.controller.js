@@ -41,17 +41,6 @@ const getClientId = async (req, res) => {
 
 }
 
-
-
-
-
-        
-
-
-
-
-
-
 const putClient = async (req, res) => {
 
     let id = req.query._id
