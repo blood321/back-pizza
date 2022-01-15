@@ -24,11 +24,11 @@ const postProduct = async (req, res) => {
 
  const putProduct = async (req, res) => {
     let id = req.query._id
-    const { name, description } = req.body
+    const { title, desc, img, prices } = req.body
     try {
-        const product = await Product.findOneAndUpdate({ _id: id }, { title, desc })
+        const product = await Product.findOneAndUpdate({ _id: id }, { title, desc, img, prices })
         res.send(product)
-        if (!name || !description) { res.send('Faltan datos'); }
+        if (((!title || !desc) || !img) || !prices) { res.send('Faltan datos'); }
     }
     catch (err) {
         res.status(500).send(err)
